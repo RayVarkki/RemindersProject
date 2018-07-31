@@ -1,0 +1,53 @@
+<html>
+<head>  
+</head>
+
+<body>
+    <input type="text" name="listName" placeholder="name me bb" />
+    <button type="btn" onclick="saveListName()">Save List</button>
+    <div id="lists">
+    </div>
+<script>
+// @todo basic js, jquery, xhr, promises, async await, babel, webpack, npm, vue/angular/react, firebase
+// @todo multiple lists, checkboxes, timestamp/reminders/alerts
+// @todo name create read update delete 
+
+var masterList = JSON.parse(localStorage.getItem('masterList')) || {};
+
+for (var key in masterList) {
+    var list = masterList[key];
+
+    var listsHtml =    
+        `<span>${key}</span>
+        <input type="text" name="newItem" placeholder="add me bb" /> 
+        <button type="btn" onclick="addTodo()">+</button>
+            <ul>`;
+            for (const index in list) {
+                const listItem = list[index];
+                listsHtml += 
+                    `<li>
+                        <label>
+                            <input type="checkbox" />
+                            ${listItem}
+                        </label>
+                    </li>`;
+            }
+    
+    listsHtml +=  `</ul>`;
+
+    document.getElementById("lists").innerHTML = listsHtml;
+}
+
+function addTodo() {
+    localStorage.setItem('mylist', 'bbba');
+}
+
+function saveListName() {
+    var myListName = document.getElementsByName('listName')[0].value;
+    masterList[myListName] = [];
+    localStorage.setItem('masterList', JSON.stringify(masterList));
+}
+
+</script>
+</body>
+</html>

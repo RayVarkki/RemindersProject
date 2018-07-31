@@ -1,0 +1,14 @@
+version:  '3'
+
+services:
+    web:
+        container_name: todo
+        build:
+          context: ./
+        volumes:
+          - ./:/var/www/html/
+          # - ./dist/:/var/www/html/
+          # - ./api/:/var/www/html/api/
+        ports:
+          - "8083:80"
+
